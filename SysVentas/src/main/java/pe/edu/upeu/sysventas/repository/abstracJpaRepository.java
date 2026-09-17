@@ -42,7 +42,7 @@ public abstract class abstracJpaRepository<T, ID> implements ICrudGenericoReposi
     }
 
     @Override
-    public boolean existById(ID id) {
+    public boolean existsById(ID id) {
         return false;
     }
 }
