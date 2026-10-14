@@ -4,7 +4,11 @@ on:
   push:
     branches: [ main, master ]
     paths:
+<<<<<<< HEAD
       - 'AlgoritmoGUI/**'
+=======
+      - 'AlgoritmosGUI/**'
+>>>>>>> 3f3b5637db1cca904f23d6f480b7674ebfb643ad
       - '.github/workflows/android.yml'
   workflow_dispatch:
 
@@ -44,7 +48,11 @@ jobs:
           sudo apt install -y libasound2-dev libavcodec-dev libavformat-dev libavutil-dev libgl-dev libgtk-3-dev libpango1.0-dev libxtst-dev
 
       - name: Build APK
+<<<<<<< HEAD
         working-directory: AlgoritmoGUI
+=======
+        working-directory: AlgoritmosGUI
+>>>>>>> 3f3b5637db1cca904f23d6f480b7674ebfb643ad
         run: |
           chmod +x mvnw
           export ANDROID_SDK=$ANDROID_HOME
@@ -55,6 +63,11 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
+<<<<<<< HEAD
           name: AlgoritmoGUI-apk
           path: AlgoritmoGUI/target/gluonfx/aarch64-android/gvm/*.apk
+=======
+          name: AlgoritmosGUI-apk
+          path: AlgoritmosGUI/target/gluonfx/aarch64-android/gvm/*.apk
+>>>>>>> 3f3b5637db1cca904f23d6f480b7674ebfb643ad
           if-no-files-found: error
