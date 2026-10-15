@@ -39,6 +39,8 @@ public class AppContext {
         registrar(UnidadMedidaRepository.class,  new UnidadMedidaRepository());
         registrar(ProductoRepository.class,      new ProductoRepository());
 
+        registrar(UsuarioRepository.class, new UsuarioRepository());
+
     }
 
     // CAPA 2 — SERVICIOS
@@ -49,8 +51,9 @@ public class AppContext {
         registrar(ICategoriaService.class,    new CategoriaServiceImp(   getBean(CategoriaRepository.class)));
         registrar(IMarcaService.class,        new MarcaServiceImp(       getBean(MarcaRepository.class)));
         registrar(IProductoService.class,     new ProductoServiceImp(    getBean(ProductoRepository.class)));
-        registrar(IUnidadMedidaService.class, new UnidadMedidaService(getBean(UnidadMedidaRepository.class)));
+        registrar(IUnidadMedidaService.class, new UnidadMedidaServiceImp(getBean(UnidadMedidaRepository.class)));
 
+        registrar(IUsuarioService.class, new UsuarioServiceImp(getBean(UsuarioRepository.class)));
 
     }
 
@@ -59,12 +62,15 @@ public class AppContext {
     // El FXMLLoader los busca aquí a través de setControllerFactory().
     private void registrarControladores() {
         //registrar(LoginController.class, new LoginController(getBean(IUsuarioService.class)));
+        registrar(MainguiController.class, new MainguiController());
         registrar(ProductoController.class,
                 new ProductoController(
                         getBean(IMarcaService.class),
                         getBean(ICategoriaService.class),
                         getBean(IProductoService.class),
                         getBean(IUnidadMedidaService.class)));
+
+        registrar(LoginController.class, new LoginController(getBean(IUsuarioService.class)));
 
     }
 

@@ -2,7 +2,9 @@ package pe.edu.upeu.sysventas;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import pe.edu.upeu.sysventas.config.AppContext;
 
@@ -11,13 +13,19 @@ import java.io.IOException;
 public class SysVentas extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        AppContext appContext = AppContext.getInstance();
-        FXMLLoader fxmlLoader = new FXMLLoader(SysVentas.class.getResource("/view/main_producto.fxml"));
+
+        Screen screen=Screen.getPrimary();
+
+        AppContext appContext=AppContext.getInstance();
+        Rectangle2D dimen=screen.getBounds();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(SysVentas.class.getResource("/view/login.fxml"));
         fxmlLoader.setControllerFactory(appContext::getBean);
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
-        stage.setTitle("Hello!");
+        stage.setTitle("SysVentas Login!");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 }
